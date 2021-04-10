@@ -3,6 +3,9 @@ const client = new Discord.Client ();
 var prefix = "?";
 var bot = new Discord.Client ();
 var Client = new Discord.Client ();
+var NomProprio = "Swaggill#7375"
+var IdProprio =  "243720368165093376"
+var all = " <@243720368165093376> ( Swaggill#7375 )"
 
 
 
@@ -46,19 +49,11 @@ bot.on('message', message => {
 bot.on ('message', messsage => {
 if(message.content.startsWith("?mp")) {
  
-    var args = message.content.split(" ").slice(1);
-    var msge = args.join(' ');
+     var msge = message.content.split(' ').slice(1).join('')
 
-    if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("❌ Tu n'as pas la permission d'utiliser cette commande!");
-    if(!msge) return message.channel.send("Precise un message")
-
-    var mpall = new Discord.RichEmbed()
-    .setThumbnail(client.user.avatarURL)
-    .setTimestamp()
-    .setColor("RANDOM")
-    .addField("Annoce a lire", msge);
-    message.delete()
-    message.guild.members.map(m => m.send(mpall))
+    if(!message.guild.member(message.author).hasPermission("ADMINISTRATOR")) return message.channel.send("Tu n'as pas la permission d'utiliser cette commande!");
+    if(!msge) return message.channel.send("Precise un message");
+        message.guild.members.map(m => m.send(msge))
 }})
 
 bot.on('message', message => {
@@ -68,10 +63,10 @@ bot.on('message', message => {
                 var utokick = message.mentions.users.first()
                 if (!utokick) {
                     var h_embed = new Discord.RichEmbed()
-                        .setTitle("Aide : x!kick")
+                        .setTitle("Aide : ?kick")
                         .setDescription("_ _")
                         .setThumbnail("https://i.imgur.com/O3DHIA5.gif")
-                        .addField("Aide : ?kick", "Kick une persone sur le serveur \nExemple : ?kick @Draco1544#8582\n\nRequiert la permission **KICK_MEMBERS**")
+                        .addField("Aide : ?kick", "Kick une persone sur le serveur \nExemple : ?kick @Swaggill#7375\n\nRequiert la permission **KICK_MEMBERS**")
                     message.channel.sendEmbed(h_embed)
                 } else {
                         if (message.guild.member(utokick).kickable) {
@@ -89,6 +84,13 @@ bot.on('message', message => {
         }
     }
 })
+
+bot.on('message', message => {
+    if (message.content === '?ownerinfo') {
+      console.log("Demande des informations du proprio demandée")
+      message.channel.send('all')
+    }
+  })
 
 bot.on('message', message => {
     if (message.content === '?ping') {
